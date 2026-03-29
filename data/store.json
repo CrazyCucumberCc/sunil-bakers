@@ -1,0 +1,276 @@
+{
+  "settings": {
+    "businessName": "Sunil Bakers",
+    "phone": "+91 9988600189",
+    "whatsapp": "+91 9988600189",
+    "address": "Main Bazar, Railway Rd, near civil hospital, opposite Ballu Ram Dharamshala, Mandi Gobindgarh, Punjab 147301",
+    "businessHours": "Call or WhatsApp to confirm daily opening hours and pickup timing.",
+    "pickupWindow": "Pickup and celebration handover support available for local customers.",
+    "serviceArea": "Mandi Gobindgarh and nearby celebration orders.",
+    "orderNotice": "Theme cakes are best discussed in advance for cleaner finishing and personalization."
+  },
+  "productionNote": {
+    "title": "Today's Production Focus",
+    "content": "Use this board to track custom cake follow-ups, confirm pickup timing, and keep the team aligned on priority orders.",
+    "updatedAt": null
+  },
+  "siteContent": {
+    "hero": {
+      "eyebrow": "Premium Cakes. Crafted Daily.",
+      "titleSoft": "Delicious Moments,",
+      "titleScript": "Crafted Fresh",
+      "copy": "A luxury-style bakery experience in Mandi Gobindgarh, serving fresh cakes, elegant eggless creations, and custom theme cakes made for celebrations that deserve more than ordinary."
+    },
+    "about": {
+      "eyebrow": "About Sunil Bakers",
+      "titleSoft": "A local bakery with a",
+      "titleScript": "couture cake soul",
+      "lead": "Sunil Bakers brings together the warmth of a neighborhood bakery and the finish of a premium celebration studio.",
+      "body": "Located in Main Bazar, every cake is created to feel personal, polished, and occasion-ready. From everyday fresh cakes to detailed custom themes, the focus is always on softness, freshness, and elegant presentation."
+    },
+    "gallery": {
+      "eyebrow": "Cake Gallery",
+      "title": "Real cake visuals that make the bakery feel",
+      "accent": "worth visiting",
+      "copy": "Owners buy bakery websites faster when the site proves it can showcase real output, not just branding language.",
+      "items": [
+        {
+          "id": "gallery_1",
+          "image": "/img2feature.avif",
+          "alt": "Curated pastry and cake display",
+          "kicker": "Display Moments",
+          "title": "Signature counter presentation",
+          "wide": true
+        },
+        {
+          "id": "gallery_2",
+          "image": "/img3.avif",
+          "alt": "Custom celebration cake showcase",
+          "kicker": "Custom Finish",
+          "title": "Styled for birthdays and milestones",
+          "wide": false
+        },
+        {
+          "id": "gallery_3",
+          "image": "/blackforest.avif",
+          "alt": "Black forest cake",
+          "kicker": "Classic Favourite",
+          "title": "Black Forest appeal",
+          "wide": false
+        },
+        {
+          "id": "gallery_4",
+          "image": "/biscoffcake.webp",
+          "alt": "Biscoff cake",
+          "kicker": "Modern Crowd-Pleaser",
+          "title": "Biscoff luxury styling",
+          "wide": false
+        },
+        {
+          "id": "gallery_5",
+          "image": "/strawberry.avif",
+          "alt": "Strawberry cake",
+          "kicker": "Soft Celebration",
+          "title": "Fresh cream and berry tones",
+          "wide": false
+        },
+        {
+          "id": "gallery_6",
+          "image": "/rasmalai.avif",
+          "alt": "Rasmalai cake",
+          "kicker": "Indian Favourite",
+          "title": "Rasmalai-inspired richness",
+          "wide": false
+        }
+      ]
+    },
+    "faq": {
+      "eyebrow": "FAQ",
+      "title": "Common customer questions,",
+      "accent": "answered clearly",
+      "copy": "A bakery owner is more likely to value the site when it reduces repeated customer questions and makes ordering easier.",
+      "items": [
+        {
+          "id": "faq_1",
+          "question": "Do you make eggless cakes?",
+          "answer": "Yes. Sunil Bakers offers eggless celebration cakes with the same focus on softness, richness, and presentation.",
+          "open": true
+        },
+        {
+          "id": "faq_2",
+          "question": "How early should I enquire for a theme cake?",
+          "answer": "Advance discussion is best for custom themes so colors, message details, and finishing can be planned properly.",
+          "open": false
+        },
+        {
+          "id": "faq_3",
+          "question": "Can names, toppers, and custom writing be added?",
+          "answer": "Yes. Share the name, occasion, preferred colors, and inspiration so the cake can be tailored for the event.",
+          "open": false
+        },
+        {
+          "id": "faq_4",
+          "question": "How is custom pricing decided?",
+          "answer": "Final pricing depends on size, flavor, eggless preference, finishing detail, and theme complexity.",
+          "open": false
+        },
+        {
+          "id": "faq_5",
+          "question": "Is pickup possible for local orders?",
+          "answer": "Yes. Customers can call or WhatsApp to confirm handover timing and availability for local celebrations.",
+          "open": false
+        },
+        {
+          "id": "faq_6",
+          "question": "What details should I send for a fast quotation?",
+          "answer": "Send the cake type, occasion, flavor, date needed, eggless preference, and theme idea for the fastest response.",
+          "open": false
+        },
+        {
+          "id": "faq_1774794732791",
+          "question": "New question",
+          "answer": "Add the answer here from the admin panel.",
+          "open": false
+        },
+        {
+          "id": "faq_1774794734265",
+          "question": "New question",
+          "answer": "Add the answer here from the admin panel.",
+          "open": false
+        }
+      ]
+    }
+  },
+  "users": [
+    {
+      "id": "user_20f1c1a2f74886b3",
+      "username": "sunill",
+      "displayName": "sunil",
+      "role": "owner",
+      "active": true,
+      "passwordHash": "b8f9f18823ab9bd1ee8e2127741db363:9d841a4fe659758853a5462e0130a32179db5a1900cb50c6b22a8a095c6f64e263844bc9e5add07fa85f16d43ec97a58326dde485926b40178d48632db3eab39",
+      "createdAt": "2026-03-29T13:42:03.676Z",
+      "updatedAt": "2026-03-29T13:42:03.676Z",
+      "lastLoginAt": "2026-03-29T13:42:03.676Z"
+    }
+  ],
+  "sessions": [
+    {
+      "id": "session_a2176dabede1b863",
+      "userId": "user_20f1c1a2f74886b3",
+      "createdAt": "2026-03-29T13:42:03.842Z",
+      "lastActiveAt": "2026-03-29T16:28:26.709Z",
+      "expiresAt": "2026-04-05T13:42:03.842Z"
+    }
+  ],
+  "orders": [
+    {
+      "id": "order_b3ff1f68703a2e74",
+      "createdAt": "2026-03-29T15:17:20.949Z",
+      "lastUpdatedAt": "2026-03-29T15:17:20.949Z",
+      "status": "new",
+      "source": "website",
+      "internalNotes": "",
+      "quotedPrice": "",
+      "advancePaid": "",
+      "balanceDue": "",
+      "pickupMode": "",
+      "pickupTime": "",
+      "customerName": "keshav",
+      "email": "shweta.mishrau.1234@gmail.com",
+      "phone": "07982117721",
+      "message": "mop",
+      "cakeType": "Classic Cake",
+      "occasion": "Birthday",
+      "flavor": "rasmalai",
+      "dateNeeded": "2026-03-17",
+      "eggless": ""
+    }
+  ],
+  "menuCatalog": {
+    "classic": [
+      {
+        "id": "classic_1",
+        "name": "Vanilla Cake",
+        "description": "Light, creamy, and timeless with a polished celebration finish.",
+        "price": 450
+      },
+      {
+        "id": "classic_2",
+        "name": "Pineapple Cake",
+        "description": "Fresh pineapple notes with soft sponge and elegant whipped styling.",
+        "price": 500
+      },
+      {
+        "id": "classic_3",
+        "name": "Red Velvet Cake",
+        "description": "Velvety layers with luxurious texture and a rich premium look.",
+        "price": 700
+      },
+      {
+        "id": "classic_4",
+        "name": "Black Current Cake",
+        "description": "A fruity, vibrant option with a refined bakery-style presentation.",
+        "price": 560
+      },
+      {
+        "id": "classic_5",
+        "name": "Strawberry Cake",
+        "description": "Soft pink freshness and smooth cream layers for sweet celebrations.",
+        "price": 560
+      },
+      {
+        "id": "classic_6",
+        "name": "Rasmalai Cake",
+        "description": "Indian dessert inspiration with festive richness and creamy depth.",
+        "price": 760
+      },
+      {
+        "id": "classic_7",
+        "name": "Mango Cake",
+        "description": "Sunny mango flavor with a fresh, smooth, celebration-ready profile.",
+        "price": 580
+      }
+    ],
+    "special": [
+      {
+        "id": "special_1",
+        "name": "Black Forest Cake",
+        "description": "Chocolate, cream, and cherries brought together with timeless appeal.",
+        "price": 650
+      },
+      {
+        "id": "special_2",
+        "name": "White Forest Cake",
+        "description": "A lighter forest-inspired cake with delicate elegance and creamy layers.",
+        "price": 680
+      },
+      {
+        "id": "special_3",
+        "name": "Chocolate Truffle Cake",
+        "description": "Glossy, rich, and deeply indulgent with a premium chocolate finish.",
+        "price": 820
+      },
+      {
+        "id": "special_4",
+        "name": "Fruit Slice Cake",
+        "description": "Fresh fruit detail and a bright, layered presentation for elegant occasions.",
+        "price": 740
+      },
+      {
+        "id": "special_5",
+        "name": "Biscoff Cake",
+        "description": "Caramel biscuit richness with contemporary styling and crowd-pleasing flavor.",
+        "price": 950
+      }
+    ],
+    "brownie": [
+      {
+        "id": "brownie_1",
+        "name": "Chocolate Truffle Brownie",
+        "description": "Dense, fudgy, and layered with decadent chocolate truffle indulgence.",
+        "price": 320
+      }
+    ]
+  }
+}

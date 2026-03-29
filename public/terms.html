@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#f8f1e7" />
+    <title>Terms & Conditions | Sunil Bakers</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Allura&family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      (function () {
+        const storedTheme = localStorage.getItem("sunil-theme");
+        const preferredTheme =
+          storedTheme || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+        document.documentElement.setAttribute("data-theme", preferredTheme);
+      })();
+    </script>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body class="legal-cosmic-page">
+    <main class="legal-page">
+      <div class="container legal-wrap">
+        <button
+          class="theme-toggle theme-toggle-legal"
+          id="theme-toggle"
+          type="button"
+          aria-label="Switch to dark mode"
+          aria-pressed="false"
+        >
+          <span class="theme-toggle-track">
+            <span class="theme-toggle-thumb"></span>
+          </span>
+          <span class="theme-toggle-label">Dark mode</span>
+        </button>
+        <a class="legal-back" href="/index.html">Back to Home</a>
+        <p class="eyebrow">Terms & Conditions</p>
+        <h1>Terms & Conditions</h1>
+        <p>
+          By placing an order or submitting an enquiry to Sunil Bakers, you agree to these terms
+          and conditions.
+        </p>
+        <h2>Orders</h2>
+        <p>
+          All custom and theme cake orders should be placed with complete details including desired
+          design, flavor, message, and delivery or pickup timing.
+        </p>
+        <h2>Customization</h2>
+        <p>
+          Final decoration may slightly vary from reference images due to handmade finishing,
+          ingredient availability, and design complexity.
+        </p>
+        <h2>Pricing</h2>
+        <p>
+          Prices may vary depending on size, flavor, decoration, and customization. Final pricing
+          is confirmed after discussing order requirements.
+        </p>
+        <h2>Responsibility</h2>
+        <p>
+          Customers are requested to verify order details at the time of confirmation. Sunil Bakers
+          is not responsible for issues caused by incorrect information provided by the customer.
+        </p>
+      </div>
+    </main>
+    <script src="/app.js"></script>
+  </body>
+</html>

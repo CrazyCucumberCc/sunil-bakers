@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#f8f1e7" />
+    <meta name="robots" content="noindex,nofollow,noarchive,nosnippet" />
+    <title>Sunil Bakers Admin</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script>
+      (function () {
+        const storedTheme = localStorage.getItem("sunil-theme");
+        const preferredTheme =
+          storedTheme || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+        document.documentElement.setAttribute("data-theme", preferredTheme);
+      })();
+    </script>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body class="admin-page">
+    <div class="admin-shell">
+      <header class="admin-topbar">
+        <div class="container admin-topbar-inner">
+          <a class="brand" href="/">
+            <span class="brand-script">Sunil</span>
+            <span class="brand-name">Bakers</span>
+          </a>
+          <div class="admin-topbar-actions">
+            <a class="button button-secondary admin-back-link" href="/">View Website</a>
+            <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false">
+              <span class="theme-toggle-track"><span class="theme-toggle-thumb"></span></span>
+              <span class="theme-toggle-label">Dark mode</span>
+            </button>
+            <button class="button button-secondary admin-logout-button" id="admin-logout" type="button" hidden>Sign Out</button>
+          </div>
+        </div>
+      </header>
+
+      <main class="admin-main">
+        <section class="admin-hero">
+          <div class="container admin-hero-grid">
+            <div class="admin-hero-copy">
+              <p class="eyebrow">Bakery Dashboard</p>
+              <h1>A simple place to manage <span class="title-accent">orders, website updates, and staff access</span>.</h1>
+              <p>Everything important is kept here in one calm workspace so your team can focus without feeling overloaded.</p>
+              <div class="admin-hero-badges">
+                <span>Easy order follow-up</span>
+                <span>Simple website edits</span>
+                <span>Controlled team access</span>
+              </div>
+            </div>
+            <div class="admin-hero-card">
+              <span class="admin-panel-label">Simple Workflow</span>
+              <ul class="admin-benefit-list">
+                <li>See what needs attention first.</li>
+                <li>Update customers quickly.</li>
+                <li>Keep website content and access under control.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="admin-auth-section" id="admin-auth-section">
+          <div class="container admin-auth-grid">
+            <article class="admin-auth-card" id="setup-card" hidden>
+              <span class="admin-panel-label">First-Time Setup</span>
+              <h2>Create the owner account</h2>
+              <p>This owner login controls the full bakery dashboard and can create member accounts later.</p>
+              <form id="setup-form" class="admin-form">
+                <label><span>Display Name</span><input type="text" name="displayName" placeholder="Sunil Bakers Owner" required /></label>
+                <label><span>Username</span><input type="text" name="username" placeholder="sunilowner" required /></label>
+                <label><span>Password</span><input type="password" name="password" placeholder="Minimum 8 characters" required /></label>
+                <button class="button button-primary" type="submit">Create Owner Access</button>
+              </form>
+            </article>
+
+            <article class="admin-auth-card" id="login-card" hidden>
+              <span class="admin-panel-label">Team Login</span>
+              <h2>Access the bakery dashboard</h2>
+              <p>Use the username and password shared by the owner.</p>
+              <form id="login-form" class="admin-form">
+                <label><span>Username</span><input type="text" name="username" placeholder="Enter username" required /></label>
+                <label><span>Password</span><input type="password" name="password" placeholder="Enter password" required /></label>
+                <button class="button button-primary" type="submit">Sign In</button>
+              </form>
+            </article>
+
+            <article class="admin-auth-card">
+              <span class="admin-panel-label">Useful from Day One</span>
+              <h2>Built around actual bakery work</h2>
+              <div class="admin-auth-points">
+                <div><strong>Role-based access</strong><p>Owners, managers, and staff each get the right level of control.</p></div>
+                <div><strong>Fast follow-ups</strong><p>Quote, ready-for-pickup, and customer update links are one click away.</p></div>
+                <div><strong>Live site control</strong><p>Homepage content, FAQs, and gallery visuals can be managed from here.</p></div>
+              </div>
+              <p class="admin-auth-status" id="auth-status" aria-live="polite"></p>
+            </article>
+          </div>
+        </section>
+
+        <section class="admin-dashboard" id="admin-dashboard" hidden>
+          <div class="container">
+            <div class="admin-dashboard-bar">
+              <div>
+                <p class="eyebrow">Daily Overview</p>
+                <h2 id="admin-greeting">Welcome back</h2>
+              </div>
+              <div class="admin-dashboard-chips">
+                <a href="#admin-orders">Order Inbox</a>
+                <a href="#admin-menu">Cake Menu</a>
+                <a href="#admin-content">Website Content</a>
+                <a href="#admin-gallery">Gallery & FAQ</a>
+                <a href="#admin-team">Team</a>
+              </div>
+            </div>
+
+            <div class="admin-stats-grid" id="admin-stats"></div>
+            <div class="admin-report-grid" id="admin-reports"></div>
+            <section class="admin-panel admin-visual-panel">
+              <div class="admin-panel-head">
+                <div>
+                  <span class="admin-panel-label">Today’s Focus</span>
+                  <h3>What to do first</h3>
+                </div>
+                <p class="admin-panel-copy">A simple guide for the most important next actions.</p>
+              </div>
+              <div class="admin-bar-chart" id="admin-bar-chart"></div>
+            </section>
+
+            <div class="admin-layout-grid">
+              <section class="admin-panel admin-panel-wide" id="admin-orders">
+                <div class="admin-panel-head">
+                  <div>
+                    <span class="admin-panel-label">Order Pipeline</span>
+                    <h3>Customer enquiries and follow-ups</h3>
+                  </div>
+                  <p class="admin-panel-copy">Reply, update status, and share customer messages from one place.</p>
+                </div>
+                <div class="admin-pipeline-grid" id="admin-pipeline"></div>
+                <div class="admin-orders-list" id="admin-orders-list"></div>
+              </section>
+
+              <section class="admin-panel" id="admin-production">
+                <div class="admin-panel-head">
+                  <div>
+                    <span class="admin-panel-label">Production Note</span>
+                    <h3>Daily bakery focus</h3>
+                  </div>
+                </div>
+                <form class="admin-form" id="production-form">
+                  <label><span>Title</span><input type="text" name="title" /></label>
+                  <label><span>Team Note</span><textarea name="content" rows="6"></textarea></label>
+                  <button class="button button-primary" type="submit">Save Production Note</button>
+                </form>
+                <p class="admin-inline-status" id="production-status" aria-live="polite"></p>
+              </section>
+
+              <section class="admin-panel" id="admin-settings">
+                <div class="admin-panel-head">
+                  <div>
+                    <span class="admin-panel-label">Business Settings</span>
+                    <h3>Customer-facing bakery details</h3>
+                  </div>
+                </div>
+                <form class="admin-form" id="settings-form">
+                  <label><span>Business Hours Note</span><textarea name="businessHours" rows="3"></textarea></label>
+                  <label><span>Pickup / Handover Note</span><textarea name="pickupWindow" rows="3"></textarea></label>
+                  <label><span>Service Area</span><textarea name="serviceArea" rows="3"></textarea></label>
+                  <label><span>Theme Cake Notice</span><textarea name="orderNotice" rows="3"></textarea></label>
+                  <button class="button button-primary" type="submit">Save Business Settings</button>
+                </form>
+                <p class="admin-inline-status" id="settings-status" aria-live="polite"></p>
+              </section>
+
+              <section class="admin-panel" id="admin-profile">
+                <div class="admin-panel-head">
+                  <div>
+                    <span class="admin-panel-label">My Access</span>
+                    <h3>Update your own login</h3>
+                  </div>
+                </div>
+                <form class="admin-form" id="profile-form">
+                  <label><span>Display Name</span><input type="text" name="displayName" /></label>
+                  <label><span>Username</span><input type="text" name="username" /></label>
+                  <label><span>Current Password</span><input type="password" name="currentPassword" placeholder="Required only to change password" /></label>
+                  <label><span>New Password</span><input type="password" name="newPassword" placeholder="Leave blank to keep current password" /></label>
+                  <button class="button button-primary" type="submit">Save My Profile</button>
+                </form>
+                <p class="admin-inline-status" id="profile-status" aria-live="polite"></p>
+              </section>
+
+              <section class="admin-panel" id="admin-content">
+                <div class="admin-panel-head">
+                  <div>
+                    <span class="admin-panel-label">Homepage Content</span>
+                    <h3>Edit the main website words</h3>
+                  </div>
+                </div>
+                <form class="admin-form" id="content-form">
+                  <label><span>Hero Eyebrow</span><input type="text" name="heroEyebrow" /></label>
+                  <label><span>Hero Title Line</span><input type="text" name="heroTitleSoft" /></label>
+                  <label><span>Hero Highlight Word</span><input type="text" name="heroTitleScript" /></label>
+                  <label><span>Hero Copy</span><textarea name="heroCopy" rows="4"></textarea></label>
+                  <label><span>About Eyebrow</span><input type="text" name="aboutEyebrow" /></label>
+                  <label><span>About Title Line</span><input type="text" name="aboutTitleSoft" /></label>
+                  <label><span>About Highlight Word</span><input type="text" name="aboutTitleScript" /></label>
+                  <label><span>About Lead</span><textarea name="aboutLead" rows="3"></textarea></label>
+                  <label><span>About Body</span><textarea name="aboutBody" rows="4"></textarea></label>
+                  <button class="button button-primary" type="submit">Save Website Copy</button>
+                </form>
+                <p class="admin-inline-status" id="content-status" aria-live="polite"></p>
+              </section>
+
+              <section class="admin-panel" id="admin-menu">
+                <div class="admin-panel-head">
+                  <div>
+                    <span class="admin-panel-label">Cake Menu</span>
+                    <h3>Edit cake names, descriptions, and listed prices</h3>
+                  </div>
+                </div>
+                <div class="admin-menu-editor" id="admin-menu-editor"></div>
+                <div class="admin-section-actions">
+                  <button class="button button-primary" id="save-menu-pricing" type="button">Save Cake Details</button>
+                </div>
+                <p class="admin-inline-status" id="menu-status" aria-live="polite"></p>
+              </section>
+
+              <section class="admin-panel" id="admin-gallery">
+                <div class="admin-panel-head">
+                  <div>
+                    <span class="admin-panel-label">Gallery & FAQ</span>
+                    <h3>Manage images and common questions</h3>
+                  </div>
+                </div>
+                <form class="admin-form" id="gallery-upload-form">
+                  <label><span>Gallery Kicker</span><input type="text" name="kicker" placeholder="Display Moments" /></label>
+                  <label><span>Gallery Title</span><input type="text" name="title" placeholder="Signature counter presentation" /></label>
+                  <label><span>Alt Text</span><input type="text" name="alt" placeholder="Describe the cake image" /></label>
+                  <label><span>Featured Wide Card</span><select name="wide"><option value="false">Normal</option><option value="true">Wide</option></select></label>
+                  <label><span>Upload Image</span><input type="file" name="image" accept="image/png,image/jpeg,image/webp,image/avif" /></label>
+                  <button class="button button-primary" type="submit">Upload Gallery Image</button>
+                </form>
+                <p class="admin-inline-status" id="gallery-status" aria-live="polite"></p>
+                <div class="admin-gallery-list" id="admin-gallery-list"></div>
+                <div class="admin-section-actions">
+                  <button class="button button-primary" id="save-gallery-items" type="button">Save Gallery Changes</button>
+                </div>
+                <div class="admin-faq-list" id="admin-faq-list"></div>
+                <div class="admin-section-actions">
+                  <button class="button button-secondary" id="add-faq-item" type="button">Add FAQ Item</button>
+                  <button class="button button-primary" id="save-faq-items" type="button">Save FAQ Changes</button>
+                </div>
+              </section>
+
+              <section class="admin-panel" id="admin-team">
+                <div class="admin-panel-head">
+                  <div>
+                    <span class="admin-panel-label">Team Access</span>
+                    <h3>Owner-managed member accounts</h3>
+                  </div>
+                </div>
+                <form class="admin-form" id="team-form">
+                  <label><span>Display Name</span><input type="text" name="displayName" placeholder="Counter Staff" /></label>
+                  <label><span>Username</span><input type="text" name="username" placeholder="counter01" /></label>
+                  <label><span>Role</span><select name="role"><option value="staff">Staff</option><option value="manager">Manager</option><option value="owner">Owner</option></select></label>
+                  <label><span>Password</span><input type="password" name="password" placeholder="Minimum 8 characters" /></label>
+                  <button class="button button-primary" type="submit">Add Team Member</button>
+                </form>
+                <p class="admin-inline-status" id="team-status" aria-live="polite"></p>
+                <div class="admin-team-list" id="admin-team-list"></div>
+              </section>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="/admin.js"></script>
+  </body>
+</html>

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Sunil Bakers favicon">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fff8f0" />
+      <stop offset="100%" stop-color="#f0dfd0" />
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#d4af37" />
+      <stop offset="100%" stop-color="#8f5b43" />
+    </linearGradient>
+  </defs>
+  <rect x="10" y="10" width="108" height="108" rx="28" fill="url(#bg)" />
+  <rect x="10" y="10" width="108" height="108" rx="28" fill="none" stroke="rgba(90,52,44,0.18)" />
+  <path d="M32 80c0-14 14-24 32-24s32 10 32 24" fill="none" stroke="#5a342c" stroke-width="9" stroke-linecap="round" />
+  <path d="M44 52c0-12 8-20 20-20s20 8 20 20" fill="none" stroke="url(#accent)" stroke-width="10" stroke-linecap="round" />
+  <circle cx="64" cy="44" r="8" fill="#d4af37" />
+</svg>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#f8f1e7" />
+    <title>Privacy Policy | Sunil Bakers</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Allura&family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      (function () {
+        const storedTheme = localStorage.getItem("sunil-theme");
+        const preferredTheme =
+          storedTheme || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+        document.documentElement.setAttribute("data-theme", preferredTheme);
+      })();
+    </script>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body class="legal-cosmic-page">
+    <main class="legal-page">
+      <div class="container legal-wrap">
+        <button
+          class="theme-toggle theme-toggle-legal"
+          id="theme-toggle"
+          type="button"
+          aria-label="Switch to dark mode"
+          aria-pressed="false"
+        >
+          <span class="theme-toggle-track">
+            <span class="theme-toggle-thumb"></span>
+          </span>
+          <span class="theme-toggle-label">Dark mode</span>
+        </button>
+        <a class="legal-back" href="/index.html">Back to Home</a>
+        <p class="eyebrow">Privacy Policy</p>
+        <h1>Privacy Policy</h1>
+        <p>
+          Sunil Bakers respects your privacy. We collect only the information you share with us
+          through our website contact form, phone calls, or WhatsApp enquiries.
+        </p>
+        <h2>Information We Collect</h2>
+        <p>
+          We may collect your name, email address, phone number, message details, and order
+          preferences when you contact us.
+        </p>
+        <h2>How We Use Your Information</h2>
+        <p>
+          Your information is used to respond to enquiries, confirm orders, provide customer
+          service, and improve our communication with you.
+        </p>
+        <h2>Data Sharing</h2>
+        <p>
+          We do not sell your personal information. We may use trusted service providers such as
+          email platforms only for communication purposes related to your enquiry or order.
+        </p>
+        <h2>Contact</h2>
+        <p>
+          For any privacy-related concern, please call us at +91 9988600189 or visit our bakery in
+          Mandi Gobindgarh, Punjab.
+        </p>
+      </div>
+    </main>
+    <script src="/app.js"></script>
+  </body>
+</html>
