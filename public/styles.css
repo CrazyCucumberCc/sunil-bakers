@@ -641,7 +641,8 @@ main,
 }
 
 .mobile-showcase-bar,
-.mobile-order-shortcuts {
+.mobile-order-shortcuts,
+.mobile-bakery-emblem {
   display: none;
 }
 
@@ -3035,6 +3036,55 @@ html[data-performance-lite] .concierge-panel {
     margin-bottom: 10px;
   }
 
+  .mobile-bakery-emblem {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 88px;
+    align-items: center;
+    gap: 14px;
+    margin-top: 14px;
+    padding: 14px;
+    border-radius: 22px;
+    background:
+      linear-gradient(180deg, rgba(255, 248, 240, 0.1), rgba(255, 248, 240, 0.04)),
+      linear-gradient(135deg, rgba(223, 185, 111, 0.1), rgba(255, 248, 240, 0));
+    border: 1px solid rgba(255, 236, 199, 0.14);
+    box-shadow: 0 16px 28px rgba(27, 14, 12, 0.12);
+  }
+
+  .mobile-bakery-emblem-copy {
+    display: grid;
+    gap: 4px;
+  }
+
+  .mobile-bakery-kicker {
+    color: rgba(255, 226, 164, 0.92);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .mobile-bakery-emblem strong {
+    color: #fff8ef;
+    font-family: "Playfair Display", serif;
+    font-size: 1rem;
+    line-height: 1.1;
+  }
+
+  .mobile-bakery-emblem p {
+    margin: 0;
+    color: rgba(255, 241, 219, 0.82);
+    font-size: 0.84rem;
+    line-height: 1.45;
+  }
+
+  .mobile-bakery-emblem img {
+    width: 88px;
+    height: auto;
+    justify-self: end;
+    filter: drop-shadow(0 14px 18px rgba(29, 15, 12, 0.18));
+  }
+
   .mobile-order-chip {
     min-height: 42px;
     border: 1px solid rgba(90, 52, 44, 0.14);
@@ -3292,6 +3342,25 @@ html[data-performance-lite] .concierge-panel {
 
   .mobile-order-shortcuts {
     gap: 8px;
+  }
+
+  .mobile-bakery-emblem {
+    grid-template-columns: minmax(0, 1fr) 74px;
+    gap: 12px;
+    padding: 12px;
+    border-radius: 18px;
+  }
+
+  .mobile-bakery-emblem strong {
+    font-size: 0.92rem;
+  }
+
+  .mobile-bakery-emblem p {
+    font-size: 0.78rem;
+  }
+
+  .mobile-bakery-emblem img {
+    width: 74px;
   }
 
   .mobile-order-chip {
@@ -6753,6 +6822,13 @@ html[data-theme="dark"] .mobile-showcase-bar {
 
 html[data-theme="dark"] .mobile-showcase-title {
   color: rgba(255, 241, 219, 0.84);
+}
+
+html[data-theme="dark"] .mobile-bakery-emblem {
+  background:
+    linear-gradient(180deg, rgba(255, 244, 227, 0.08), rgba(255, 244, 227, 0.02)),
+    linear-gradient(135deg, rgba(231, 193, 120, 0.08), rgba(255, 244, 227, 0));
+  border-color: rgba(241, 202, 125, 0.14);
 }
 
 html[data-theme="dark"] .hero-content::before {
