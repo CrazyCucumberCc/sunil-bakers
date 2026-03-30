@@ -127,6 +127,10 @@ let themesRendered = false;
 let pricedCakesCache = null;
 const themeMarkupCache = new Map();
 let enquiryPopupController;
+const deferNonCritical =
+  window.requestIdleCallback
+    ? (callback) => window.requestIdleCallback(callback, { timeout: 1400 })
+    : (callback) => window.setTimeout(callback, 220);
 
 function setTextContent(id, value) {
   const element = document.querySelector(`#${id}`);
@@ -1017,15 +1021,23 @@ function setupContactForm() {
   });
 }
 
-applyPerformanceMode();
-setupDeferredSectionRendering();
 setupThemeToggle();
-setupRevealAnimation();
 setupNavigation();
-setupMenuToolbar();
-setupMenuCardSelection();
-setupThemeFilters();
-setupMobileEnhancements();
 setupContactForm();
-loadSiteContent();
-loadMenuCatalog();
+
+window.requestAnimationFrame(() => {
+  setupMobileEnhancements();
+
+  window.requestAnimationFrame(() => {
+    deferNonCritical(() => {
+      applyPerformanceMode();
+      setupRevealAnimation();
+      setupDeferredSectionRendering();
+      setupMenuToolbar();
+      setupMenuCardSelection();
+      setupThemeFilters();
+      loadSiteContent();
+      loadMenuCatalog();
+    });
+  });
+});

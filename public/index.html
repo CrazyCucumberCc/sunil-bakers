@@ -58,11 +58,21 @@
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" as="image" href="/img1home.avif" fetchpriority="high" media="(min-width: 769px)" />
+    <link rel="preload" as="image" href="/biscoffcake.webp" fetchpriority="high" media="(max-width: 768px)" />
     <link rel="icon" href="sunilpfp.jpg">
     <link
       href="https://fonts.googleapis.com/css2?family=Allura&family=Cinzel:wght@600;700&family=Playfair+Display:wght@500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
     />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Allura&family=Cinzel:wght@600;700&family=Playfair+Display:wght@500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
     <script>
       (function () {
         const storedTheme = localStorage.getItem("sunil-theme");
@@ -1012,6 +1022,6 @@
       </div>
     </div>
 
-    <script src="/app.js"></script>
+    <script src="/app.js" defer></script>
   </body>
 </html>
