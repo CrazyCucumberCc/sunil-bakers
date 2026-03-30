@@ -859,6 +859,9 @@ function setupMobileEnhancements() {
   const navToggle = document.querySelector("#nav-toggle");
   const mobileQuery = window.matchMedia("(max-width: 860px)");
   const compactQuery = window.matchMedia("(max-width: 768px)");
+  const quickJumpBar = document.querySelector(".mobile-showcase-bar");
+  const cakeTypeSelect = document.querySelector('[name="cakeType"]');
+  const occasionInput = document.querySelector('[name="occasion"]');
 
   if (!nav || !navToggle) {
     return;
@@ -890,6 +893,36 @@ function setupMobileEnhancements() {
     if (event.key === "Escape") {
       closeNavigation();
     }
+  });
+
+  quickJumpBar?.addEventListener("click", (event) => {
+    const link = event.target.closest('a[href^="#"]');
+    if (!link) {
+      return;
+    }
+
+    const target = document.querySelector(link.getAttribute("href"));
+    if (!target) {
+      return;
+    }
+
+    event.preventDefault();
+    target.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+
+  document.querySelector(".mobile-order-shortcuts")?.addEventListener("click", (event) => {
+    const shortcut = event.target.closest("[data-cake-shortcut]");
+    if (!shortcut || !cakeTypeSelect) {
+      return;
+    }
+
+    const type = shortcut.dataset.cakeShortcut || "";
+    cakeTypeSelect.value = type;
+    document.querySelectorAll(".mobile-order-chip.is-active").forEach((chip) => chip.classList.remove("is-active"));
+    shortcut.classList.add("is-active");
+    updateCakeSelectionSummary();
+    occasionInput?.scrollIntoView({ behavior: "smooth", block: "center" });
+    occasionInput?.focus({ preventScroll: true });
   });
 }
 
