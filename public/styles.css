@@ -1648,7 +1648,7 @@ main,
   gap: 18px;
   overflow-x: auto;
   overflow-y: hidden;
-  padding: 4px 4px 8px;
+  padding: 4px 4px 3px;
   scroll-snap-type: x proximity;
   scroll-behavior: smooth;
   scroll-padding-inline: 4px;
@@ -1702,6 +1702,44 @@ main,
 .menu-card-selectable:focus-visible {
   outline: 2px solid rgba(199, 154, 74, 0.58);
   outline-offset: 4px;
+}
+
+.theme-reveal-card {
+  display: grid;
+  grid-template-columns: 1.2fr auto;
+  gap: 18px;
+  align-items: center;
+  margin: 22px 0 28px;
+  padding: 22px 24px;
+  border-radius: 24px;
+  border: 1px solid rgba(199, 154, 74, 0.14);
+  background:
+    linear-gradient(180deg, rgba(255, 250, 244, 0.92), rgba(247, 239, 230, 0.94)),
+    var(--surface-strong);
+  box-shadow: var(--shadow-soft);
+}
+
+.theme-reveal-copy h3 {
+  margin: 6px 0 8px;
+}
+
+.theme-reveal-copy p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.theme-reveal-label {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 0 12px;
+  border-radius: 999px;
+  background: rgba(199, 154, 74, 0.12);
+  color: #8f6a34;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
 .menu-card:hover,
@@ -3031,6 +3069,7 @@ html[data-performance-lite] .concierge-panel {
   .menu-grid-rail {
     grid-auto-columns: minmax(300px, 46%);
     gap: 16px;
+    padding-bottom: 4px;
   }
 
   .theme-grid,
@@ -3204,7 +3243,7 @@ html[data-performance-lite] .concierge-panel {
   .menu-grid-rail {
     grid-auto-columns: 82%;
     gap: 14px;
-    padding-bottom: 10px;
+    padding-bottom: 4px;
   }
 
   .menu-card-body {
@@ -5606,6 +5645,24 @@ html[data-theme="dark"] .menu-scroll-note {
   color: #f7ede4;
 }
 
+html[data-theme="dark"] .theme-reveal-card {
+  background: linear-gradient(180deg, rgba(24, 18, 30, 0.96), rgba(17, 14, 28, 0.96));
+  border-color: rgba(143, 220, 255, 0.14);
+}
+
+html[data-theme="dark"] .theme-reveal-label {
+  background: rgba(143, 220, 255, 0.12);
+  color: #9edcff;
+}
+
+html[data-theme="dark"] .theme-reveal-copy h3 {
+  color: #fff3df;
+}
+
+html[data-theme="dark"] .theme-reveal-copy p {
+  color: #e5dbf2;
+}
+
 html[data-theme="dark"] .cake-advance {
   background: linear-gradient(135deg, rgba(226, 181, 103, 0.16), rgba(110, 73, 150, 0.2));
   border-color: rgba(245, 220, 197, 0.08);
@@ -6942,6 +6999,19 @@ html[data-theme="dark"] .admin-team-role {
   .gallery-caption {
     inset: auto 12px 12px;
     padding: 12px 14px;
+    max-width: calc(100% - 24px);
+    border-radius: 16px;
+  }
+
+  .gallery-caption span {
+    margin-bottom: 4px;
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+  }
+
+  .gallery-caption strong {
+    font-size: 0.92rem;
+    line-height: 1.18;
   }
 
   .admin-dashboard-chips,
@@ -6964,6 +7034,17 @@ html[data-theme="dark"] .admin-team-role {
   .heritage-shell,
   .hero-editorial-card {
     padding: 20px;
+  }
+
+  .theme-reveal-card {
+    grid-template-columns: 1fr;
+    padding: 18px;
+    margin-bottom: 22px;
+  }
+
+  .theme-reveal-card .button {
+    width: 100%;
+    justify-content: center;
   }
 
   .theme-studio-meta,
@@ -6999,6 +7080,7 @@ html[data-theme="dark"] .admin-team-role {
 
   .menu-grid-rail {
     grid-auto-columns: 88%;
+    padding-bottom: 2px;
   }
 
   .menu-card h3 {
@@ -7007,6 +7089,20 @@ html[data-theme="dark"] .admin-team-role {
 
   .gallery-card {
     min-height: 180px;
+  }
+
+  .gallery-caption {
+    inset: auto 8px 8px;
+    max-width: min(74%, calc(100% - 16px));
+    padding: 8px 10px;
+  }
+
+  .gallery-caption span {
+    font-size: 0.58rem;
+  }
+
+  .gallery-caption strong {
+    font-size: 0.82rem;
   }
 
   .theme-toolbar,

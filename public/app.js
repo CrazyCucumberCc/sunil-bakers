@@ -615,6 +615,50 @@ function renderThemes(activeFilter = "all") {
   setupRevealAnimation(themeGrid);
 }
 
+function setupThemeSectionToggle() {
+  const themeSection = document.querySelector("#themes");
+  const revealButton = document.querySelector("#show-theme-cakes");
+
+  if (!themeSection) {
+    return { open: () => {} };
+  }
+
+  const syncTriggers = (expanded) => {
+    document.querySelectorAll('[href="#themes"], #show-theme-cakes').forEach((element) => {
+      element.setAttribute("aria-expanded", String(expanded));
+    });
+  };
+
+  const open = (shouldScroll = false) => {
+    if (themeSection.hidden) {
+      themeSection.hidden = false;
+      syncTriggers(true);
+
+      if (!themesRendered) {
+        renderThemes();
+      }
+
+      setupRevealAnimation(themeSection);
+    }
+
+    if (shouldScroll) {
+      themeSection.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
+  revealButton?.addEventListener("click", () => open(true));
+
+  document.querySelectorAll('[href="#themes"]').forEach((link) => {
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      open(true);
+    });
+  });
+
+  syncTriggers(false);
+  return { open };
+}
+
 function setupDeferredSectionRendering() {
   const menuSection = document.querySelector("#menu");
   const themeSection = document.querySelector("#themes");
@@ -632,14 +676,16 @@ function setupDeferredSectionRendering() {
 
   idleRender(() => {
     renderMenus();
-    if (!themesRendered) {
+    if (!themeSection?.hidden && !themesRendered) {
       renderThemes();
     }
   });
 
   if (!("IntersectionObserver" in window)) {
     renderMenus();
-    renderThemes();
+    if (!themeSection?.hidden) {
+      renderThemes();
+    }
     return;
   }
 
@@ -656,7 +702,7 @@ function setupDeferredSectionRendering() {
         }
 
         if (entry.target === themeSection) {
-          if (!themesRendered) {
+          if (!themeSection.hidden && !themesRendered) {
             renderThemes();
           }
           observer.unobserve(entry.target);
@@ -1015,6 +1061,7 @@ function setupContactForm() {
 setupThemeToggle();
 setupNavigation();
 setupContactForm();
+setupThemeSectionToggle();
 
 window.requestAnimationFrame(() => {
   setupMobileEnhancements();
