@@ -1012,6 +1012,8 @@ function setupContactForm() {
     event.preventDefault();
     const formData = new FormData(form);
     const payload = Object.fromEntries(formData.entries());
+    const controller = new AbortController();
+    const timeoutId = window.setTimeout(() => controller.abort(), 12000);
 
     status.textContent = "Sending your enquiry...";
     submitButton.disabled = true;
@@ -1022,11 +1024,15 @@ function setupContactForm() {
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify(payload)
+        body: JSON.stringify(payload),
+        signal: controller.signal
       });
 
-      const data = await response.json();
-      status.textContent = data.message;
+      const data = await response.json().catch(() => ({
+        success: false,
+        message: "The server returned an invalid response. Please try again."
+      }));
+      status.textContent = data.message || (response.ok ? "Enquiry sent successfully." : "Unable to send enquiry.");
       status.dataset.state = response.ok ? "success" : "error";
 
       if (response.ok) {
@@ -1044,15 +1050,20 @@ function setupContactForm() {
           state: "error"
         });
       }
-    } catch (_error) {
-      status.textContent = "Something went wrong. Please call or WhatsApp us directly.";
+    } catch (error) {
+      const timeoutMessage =
+        error?.name === "AbortError"
+          ? "The request took too long. Please try again or contact us on WhatsApp."
+          : "Something went wrong. Please call or WhatsApp us directly.";
+      status.textContent = timeoutMessage;
       status.dataset.state = "error";
       popup.open({
         heading: "Unable to send enquiry",
-        body: "Something went wrong. Please call or WhatsApp us directly.",
+        body: timeoutMessage,
         state: "error"
       });
     } finally {
+      window.clearTimeout(timeoutId);
       submitButton.disabled = false;
     }
   });

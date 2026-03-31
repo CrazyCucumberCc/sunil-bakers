@@ -338,7 +338,15 @@ async function saveImage(dataUrl, originalName) {
 
 function transporter() {
   if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) return null;
-  return nodemailer.createTransport({ host: "smtp.gmail.com", port: 587, secure: false, auth: { user: process.env.EMAIL_USER, pass: process.env.EMAIL_PASS } });
+  return nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 587,
+    secure: false,
+    auth: { user: process.env.EMAIL_USER, pass: process.env.EMAIL_PASS },
+    connectionTimeout: 8000,
+    greetingTimeout: 8000,
+    socketTimeout: 12000
+  });
 }
 
 app.get("/health", (_req, res) => res.json({ status: "ok" }));
@@ -364,17 +372,42 @@ app.post("/api/contact", contactLimiter, async (req, res) => {
   await queueWrite((store) => ((store.orders.unshift(order)), store));
   const mailer = transporter();
   const receiver = process.env.CONTACT_RECEIVER || process.env.EMAIL_USER;
+  const responseBody = { success: true, orderId: order.id, message: `Enquiry received. Reference ID: ${order.id}. We will contact you soon.` };
+  res.json(responseBody);
+
   if (mailer && receiver) {
-    try {
-      await mailer.sendMail({
-        from: `"Sunil Bakers" <${process.env.EMAIL_USER}>`, to: receiver, replyTo: payload.email, subject: `New bakery enquiry from ${payload.customerName}`,
-        text: [`Enquiry ID: ${order.id}`, `Name: ${payload.customerName}`, `Email: ${payload.email}`, payload.phone ? `Phone: ${payload.phone}` : "", payload.cakeType ? `Cake Type: ${payload.cakeType}` : "", payload.cakeName ? `Cake Name: ${payload.cakeName}` : "", payload.listedPrice ? `Listed Price: Rs ${payload.listedPrice}` : "", payload.occasion ? `Occasion: ${payload.occasion}` : "", payload.flavor ? `Flavor: ${payload.flavor}` : "", payload.dateNeeded ? `Date Needed: ${payload.dateNeeded}` : "", payload.pickupTime ? `Pickup Time: ${payload.pickupTime}` : "", payload.eggless ? `Eggless: ${payload.eggless}` : "", "", "Message:", payload.message].filter(Boolean).join("\n")
+    Promise.resolve()
+      .then(() =>
+        mailer.sendMail({
+          from: `"Sunil Bakers" <${process.env.EMAIL_USER}>`,
+          to: receiver,
+          replyTo: payload.email,
+          subject: `New bakery enquiry from ${payload.customerName}`,
+          text: [
+            `Enquiry ID: ${order.id}`,
+            `Name: ${payload.customerName}`,
+            `Email: ${payload.email}`,
+            payload.phone ? `Phone: ${payload.phone}` : "",
+            payload.cakeType ? `Cake Type: ${payload.cakeType}` : "",
+            payload.cakeName ? `Cake Name: ${payload.cakeName}` : "",
+            payload.listedPrice ? `Listed Price: Rs ${payload.listedPrice}` : "",
+            payload.occasion ? `Occasion: ${payload.occasion}` : "",
+            payload.flavor ? `Flavor: ${payload.flavor}` : "",
+            payload.dateNeeded ? `Date Needed: ${payload.dateNeeded}` : "",
+            payload.pickupTime ? `Pickup Time: ${payload.pickupTime}` : "",
+            payload.eggless ? `Eggless: ${payload.eggless}` : "",
+            "",
+            "Message:",
+            payload.message
+          ]
+            .filter(Boolean)
+            .join("\n")
+        })
+      )
+      .catch((error) => {
+        console.error("Email send failed:", error);
       });
-    } catch (error) {
-      console.error("Email send failed:", error);
-    }
   }
-  return res.json({ success: true, orderId: order.id, message: `Enquiry received. Reference ID: ${order.id}. We will contact you soon.` });
 });
 
 app.get("/api/admin/session", async (req, res) => {
