@@ -2981,7 +2981,6 @@ html[data-performance-lite] .concierge-panel {
   .hero-highlights,
   .story-cards,
   .business-facts,
-  .feedback-grid,
   .bestseller-grid,
   .gallery-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -3304,7 +3303,6 @@ html[data-performance-lite] .concierge-panel {
 
   .story-cards,
   .bestseller-grid,
-  .feedback-grid,
   .faq-grid {
     grid-template-columns: 1fr;
   }
@@ -4991,8 +4989,6 @@ html[data-theme="dark"] .home-page .story-section.cosmic-section .story-copy > .
   line-height: 1.85;
 }
 
-.trust-grid,
-.feedback-grid,
 .bestseller-grid,
 .business-facts,
 .faq-grid {
@@ -5000,11 +4996,6 @@ html[data-theme="dark"] .home-page .story-section.cosmic-section .story-copy > .
   gap: 20px;
 }
 
-.trust-grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.feedback-grid,
 .bestseller-grid,
 .business-facts {
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -5016,8 +5007,6 @@ html[data-theme="dark"] .home-page .story-section.cosmic-section .story-copy > .
   margin-top: 28px;
 }
 
-.trust-card,
-.feedback-card,
 .gallery-card,
 .bestseller-card,
 .fact-card,
@@ -5028,8 +5017,6 @@ html[data-theme="dark"] .home-page .story-section.cosmic-section .story-copy > .
   box-shadow: var(--shadow-soft);
 }
 
-.trust-card,
-.feedback-card,
 .bestseller-card,
 .fact-card,
 .faq-card {
@@ -5101,8 +5088,6 @@ html[data-theme="dark"] .home-page .story-section.cosmic-section .story-copy > .
     linear-gradient(160deg, rgba(255, 249, 244, 0.99), rgba(247, 234, 225, 0.95) 54%, rgba(239, 220, 208, 0.94));
 }
 
-.trust-card-label,
-.feedback-kicker,
 .bestseller-kicker,
 .fact-label,
 .instagram-strip-label {
@@ -5123,7 +5108,6 @@ html[data-theme="dark"] .home-page .story-section.cosmic-section .story-copy > .
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.58);
 }
 
-.trust-card h3,
 .bestseller-card h3,
 .fact-card h3 {
   margin: 0 0 12px;
@@ -5137,8 +5121,6 @@ html[data-theme="dark"] .home-page .story-section.cosmic-section .story-copy > .
   font-size: 1.5rem;
 }
 
-.trust-card p,
-.feedback-card p,
 .gallery-caption strong,
 .gallery-caption span,
 .bestseller-card p,
@@ -5147,13 +5129,6 @@ html[data-theme="dark"] .home-page .story-section.cosmic-section .story-copy > .
 .faq-card p {
   color: var(--muted);
   line-height: 1.8;
-}
-
-.feedback-card p {
-  margin: 0;
-  font-family: "Playfair Display", serif;
-  font-size: 1.18rem;
-  color: var(--primary);
 }
 
 .gallery-grid {
@@ -5382,8 +5357,6 @@ html[data-theme="dark"] .story-lead-card {
   border-color: rgba(245, 220, 197, 0.12);
 }
 
-html[data-theme="dark"] .trust-card,
-html[data-theme="dark"] .feedback-card,
 html[data-theme="dark"] .gallery-card,
 html[data-theme="dark"] .bestseller-card,
 html[data-theme="dark"] .fact-card,
@@ -5402,8 +5375,6 @@ html[data-theme="dark"] .bestseller-card {
     inset 0 1px 0 rgba(255, 246, 227, 0.08);
 }
 
-html[data-theme="dark"] .trust-card h3,
-html[data-theme="dark"] .feedback-card p,
 html[data-theme="dark"] .bestseller-card h3,
 html[data-theme="dark"] .fact-card h3,
 html[data-theme="dark"] .faq-card summary,
@@ -5411,7 +5382,6 @@ html[data-theme="dark"] .gallery-caption strong {
   color: #f7ede4;
 }
 
-html[data-theme="dark"] .trust-card p,
 html[data-theme="dark"] .bestseller-card p,
 html[data-theme="dark"] .fact-card p,
 html[data-theme="dark"] .faq-card p,
@@ -5483,8 +5453,6 @@ html[data-theme="dark"] .enquiry-popup[data-state="error"] .enquiry-popup-kicker
 }
 
 @media (max-width: 1100px) {
-  .trust-grid,
-  .feedback-grid,
   .gallery-grid,
   .bestseller-grid,
   .business-facts,
@@ -5514,8 +5482,6 @@ html[data-theme="dark"] .enquiry-popup[data-state="error"] .enquiry-popup-kicker
 }
 
 @media (max-width: 640px) {
-  .trust-grid,
-  .feedback-grid,
   .gallery-grid,
   .bestseller-grid,
   .business-facts,
@@ -6520,8 +6486,6 @@ html[data-theme="dark"] .admin-team-role {
   .hero-editorial,
   .atelier-grid,
   .theme-promise,
-  .trust-grid,
-  .feedback-grid,
   .bestseller-grid,
   .business-facts,
   .faq-grid,
@@ -6550,8 +6514,6 @@ html[data-theme="dark"] .admin-team-role {
 }
 
 @media (max-width: 640px) {
-  .trust-card,
-  .feedback-card,
   .gallery-card,
   .bestseller-card,
   .fact-card,
@@ -6618,8 +6580,6 @@ html[data-theme="dark"] .admin-team-role {
 
 @media (max-width: 480px) {
   .story-cards,
-  .trust-grid,
-  .feedback-grid,
   .bestseller-grid,
   .faq-grid {
     grid-template-columns: 1fr !important;
