@@ -1650,6 +1650,7 @@ main,
   overflow-y: hidden;
   padding: 4px 4px 8px;
   scroll-snap-type: x proximity;
+  scroll-behavior: smooth;
   scroll-padding-inline: 4px;
   scrollbar-width: thin;
   scrollbar-color: rgba(199, 154, 74, 0.42) transparent;
@@ -3027,6 +3028,11 @@ html[data-performance-lite] .concierge-panel {
     grid-template-columns: 1fr;
   }
 
+  .menu-grid-rail {
+    grid-auto-columns: minmax(300px, 46%);
+    gap: 16px;
+  }
+
   .theme-grid,
   .hero-highlights,
   .story-cards,
@@ -3182,6 +3188,27 @@ html[data-performance-lite] .concierge-panel {
 
   .menu-header {
     padding: 16px;
+  }
+
+  .menu-header-meta {
+    gap: 8px;
+  }
+
+  .menu-scroll-note {
+    min-height: 34px;
+    padding: 0 12px;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+  }
+
+  .menu-grid-rail {
+    grid-auto-columns: 82%;
+    gap: 14px;
+    padding-bottom: 10px;
+  }
+
+  .menu-card-body {
+    padding: 18px;
   }
 
   .section-heading,
@@ -4729,6 +4756,7 @@ html[data-theme="dark"] .hero-editorial-card strong {
 .home-page .story-section.cosmic-section .story-signature-label,
 .home-page .story-section.cosmic-section .info-icon,
 .home-page .menu-section.cosmic-section .menu-count,
+.home-page .menu-section.cosmic-section .menu-scroll-note,
 .home-page .menu-section.cosmic-section .badge,
 .home-page .theme-section.cosmic-section .badge,
 .home-page .theme-section.cosmic-section .theme-symbol,
@@ -5569,6 +5597,12 @@ html[data-theme="dark"] .home-page .story-section.cosmic-section .story-copy > .
 html[data-theme="dark"] .cake-price {
   background: linear-gradient(135deg, rgba(43, 31, 37, 0.96), rgba(31, 23, 28, 0.94));
   border-color: rgba(245, 220, 197, 0.1);
+  color: #f7ede4;
+}
+
+html[data-theme="dark"] .menu-scroll-note {
+  background: rgba(255, 248, 240, 0.08);
+  border-color: rgba(245, 220, 197, 0.12);
   color: #f7ede4;
 }
 
@@ -6961,6 +6995,14 @@ html[data-theme="dark"] .admin-team-role {
   .feature-panel img,
   .menu-card img {
     height: 180px;
+  }
+
+  .menu-grid-rail {
+    grid-auto-columns: 88%;
+  }
+
+  .menu-card h3 {
+    font-size: 1.18rem;
   }
 
   .gallery-card {
