@@ -123,6 +123,7 @@ const MENU_CATEGORIES = ["classic", "special", "brownie"];
 let revealObserver;
 let performanceFrame;
 let menusRendered = false;
+const renderedMenuBlocks = new Set();
 let themesRendered = false;
 let pricedCakesCache = null;
 const themeMarkupCache = new Map();
@@ -235,6 +236,7 @@ async function loadMenuCatalog() {
 
       if (menusRendered && hasChanges) {
         menusRendered = false;
+        renderedMenuBlocks.clear();
         renderMenus();
       }
     }
@@ -475,37 +477,19 @@ function getThemeCategoryLabel(category) {
   return labelMap[category] || "Theme Cake";
 }
 
-function renderMenus() {
-  if (menusRendered) {
+function renderMenuBlock(category) {
+  const target = document.querySelector(`#${category}-menu`);
+  if (!target || renderedMenuBlocks.has(category)) {
     return;
   }
 
-  const classic = document.querySelector("#classic-menu");
-  const special = document.querySelector("#special-menu");
-  const brownie = document.querySelector("#brownie-menu");
-  const schedule =
-    window.requestAnimationFrame ||
-    ((callback) => {
-      window.setTimeout(callback, 16);
-    });
+  target.innerHTML = (menuData[category] || []).map((item, index) => createMenuCard(item, index)).join("");
+  renderedMenuBlocks.add(category);
+  menusRendered = renderedMenuBlocks.size === MENU_CATEGORIES.length;
+}
 
-  if (classic) {
-    classic.innerHTML = menuData.classic.map((item, index) => createMenuCard(item, index)).join("");
-  }
-
-  schedule(() => {
-    if (special) {
-      special.innerHTML = menuData.special.map((item, index) => createMenuCard(item, index)).join("");
-    }
-
-    schedule(() => {
-      if (brownie) {
-        brownie.innerHTML = menuData.brownie.map((item, index) => createMenuCard(item, index)).join("");
-      }
-    });
-  });
-
-  menusRendered = true;
+function renderMenus(categories = ["classic"]) {
+  categories.forEach((category) => renderMenuBlock(category));
   setupRevealAnimation(document.querySelector("#menu"));
 }
 
@@ -670,6 +654,11 @@ function setupThemeSectionToggle() {
 function setupDeferredSectionRendering() {
   const menuSection = document.querySelector("#menu");
   const themeSection = document.querySelector("#themes");
+  const menuBlocks = {
+    classic: document.querySelector("#classic-menu-block"),
+    special: document.querySelector("#special-menu-block"),
+    brownie: document.querySelector("#brownie-menu-block")
+  };
   const idleRender =
     window.requestIdleCallback ||
     ((callback) =>
@@ -683,14 +672,14 @@ function setupDeferredSectionRendering() {
       ));
 
   idleRender(() => {
-    renderMenus();
+    renderMenus(["classic"]);
     if (!themeSection?.hidden && !themesRendered) {
       renderThemes();
     }
   });
 
   if (!("IntersectionObserver" in window)) {
-    renderMenus();
+    renderMenus(MENU_CATEGORIES);
     if (!themeSection?.hidden) {
       renderThemes();
     }
@@ -705,7 +694,22 @@ function setupDeferredSectionRendering() {
         }
 
         if (entry.target === menuSection) {
-          renderMenus();
+          renderMenus(["classic"]);
+          observer.unobserve(entry.target);
+        }
+
+        if (entry.target === menuBlocks.classic) {
+          renderMenus(["classic"]);
+          observer.unobserve(entry.target);
+        }
+
+        if (entry.target === menuBlocks.special) {
+          renderMenus(["special"]);
+          observer.unobserve(entry.target);
+        }
+
+        if (entry.target === menuBlocks.brownie) {
+          renderMenus(["brownie"]);
           observer.unobserve(entry.target);
         }
 
@@ -725,6 +729,12 @@ function setupDeferredSectionRendering() {
   if (menuSection) {
     sectionObserver.observe(menuSection);
   }
+
+  Object.values(menuBlocks).forEach((block) => {
+    if (block) {
+      sectionObserver.observe(block);
+    }
+  });
 
   if (themeSection) {
     sectionObserver.observe(themeSection);
