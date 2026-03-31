@@ -489,26 +489,6 @@ function renderGallery(data) {
       `
     )
     .join("");
-
-  const faqList = document.querySelector("#admin-faq-list");
-  faqList.innerHTML = data.siteContent.faq.items
-    .map(
-      (item) => `
-        <article class="admin-team-card">
-          <div class="admin-team-head">
-            <div><h4>${item.question}</h4><span>${item.id}</span></div>
-            <span class="admin-team-role">${item.open ? "Open" : "Closed"}</span>
-          </div>
-          <div class="admin-team-editor">
-            <label><span>Question</span><input type="text" data-faq-question="${item.id}" value="${item.question}" /></label>
-            <label><span>Answer</span><textarea data-faq-answer="${item.id}" rows="4">${item.answer}</textarea></label>
-            <label><span>Default State</span><select data-faq-open="${item.id}"><option value="false"${!item.open ? " selected" : ""}>Closed</option><option value="true"${item.open ? " selected" : ""}>Open</option></select></label>
-            <button class="button button-secondary" data-delete-faq="${item.id}" type="button">Remove FAQ</button>
-          </div>
-        </article>
-      `
-    )
-    .join("");
 }
 
 function renderTeam(data) {
@@ -608,17 +588,6 @@ async function saveGalleryContent() {
     alt: document.querySelector(`[data-gallery-alt="${item.id}"]`)?.value || item.alt,
     image: document.querySelector(`[data-gallery-image="${item.id}"]`)?.value || item.image,
     wide: document.querySelector(`[data-gallery-wide="${item.id}"]`)?.value === "true"
-  }));
-  await api("/api/admin/content", { method: "PATCH", body: JSON.stringify(next) });
-}
-
-async function saveFaqContent() {
-  const next = contentPayloadFromState();
-  next.faq.items = next.faq.items.map((item) => ({
-    ...item,
-    question: document.querySelector(`[data-faq-question="${item.id}"]`)?.value || item.question,
-    answer: document.querySelector(`[data-faq-answer="${item.id}"]`)?.value || item.answer,
-    open: document.querySelector(`[data-faq-open="${item.id}"]`)?.value === "true"
   }));
   await api("/api/admin/content", { method: "PATCH", body: JSON.stringify(next) });
 }
@@ -816,16 +785,6 @@ function setupForms() {
     }
   });
 
-  document.querySelector("#save-faq-items")?.addEventListener("click", async () => {
-    status("gallery-status", "Saving FAQ changes...");
-    try {
-      await saveFaqContent();
-      status("gallery-status", "FAQ changes saved.", "success");
-      await loadDashboard();
-    } catch (error) {
-      status("gallery-status", error.message, "error");
-    }
-  });
 }
 
 function setupDelegation() {
@@ -921,38 +880,6 @@ function setupDelegation() {
     }
   });
 
-  document.querySelector("#admin-faq-list")?.addEventListener("click", async (event) => {
-    const removeButton = event.target.closest("[data-delete-faq]");
-    if (!removeButton) return;
-    const next = contentPayloadFromState();
-    next.faq.items = next.faq.items.filter((item) => item.id !== removeButton.dataset.deleteFaq);
-    status("gallery-status", "Removing FAQ item...");
-    try {
-      await api("/api/admin/content", { method: "PATCH", body: JSON.stringify(next) });
-      status("gallery-status", "FAQ item removed.", "success");
-      await loadDashboard();
-    } catch (error) {
-      status("gallery-status", error.message, "error");
-    }
-  });
-
-  document.querySelector("#add-faq-item")?.addEventListener("click", async () => {
-    const next = contentPayloadFromState();
-    next.faq.items.push({
-      id: `faq_${Date.now()}`,
-      question: "New question",
-      answer: "Add the answer here from the admin panel.",
-      open: false
-    });
-    status("gallery-status", "Adding FAQ item...");
-    try {
-      await api("/api/admin/content", { method: "PATCH", body: JSON.stringify(next) });
-      status("gallery-status", "FAQ item added.", "success");
-      await loadDashboard();
-    } catch (error) {
-      status("gallery-status", error.message, "error");
-    }
-  });
 }
 
 function moveMenuSlide(category, direction) {

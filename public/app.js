@@ -162,26 +162,6 @@ function renderGalleryItems(items) {
   setupRevealAnimation(grid);
 }
 
-function renderFaqItems(items) {
-  const grid = document.querySelector("#faq-grid");
-  if (!grid || !Array.isArray(items) || !items.length) {
-    return;
-  }
-
-  grid.innerHTML = items
-    .map(
-      (item) => `
-        <details class="faq-card reveal"${item.open ? " open" : ""}>
-          <summary>${item.question}</summary>
-          <p>${item.answer}</p>
-        </details>
-      `
-    )
-    .join("");
-
-  setupRevealAnimation(grid);
-}
-
 async function loadSiteContent() {
   try {
     const response = await fetch("/api/site-content");
@@ -208,13 +188,7 @@ async function loadSiteContent() {
     setTextContent("gallery-title-accent", content.gallery?.accent);
     setTextContent("gallery-copy-text", content.gallery?.copy);
 
-    setTextContent("faq-eyebrow", content.faq?.eyebrow);
-    setTextContent("faq-title-text", content.faq?.title);
-    setTextContent("faq-title-accent", content.faq?.accent);
-    setTextContent("faq-copy-text", content.faq?.copy);
-
     renderGalleryItems(content.gallery?.items || []);
-    renderFaqItems(content.faq?.items || []);
   } catch (_error) {
     /* Keep static fallback content if fetch fails. */
   }
