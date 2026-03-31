@@ -1592,6 +1592,8 @@ main,
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 
 .menu-count {
@@ -1617,10 +1619,54 @@ main,
   font-size: 0.8rem;
 }
 
+.menu-scroll-note {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 0 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(199, 154, 74, 0.14);
+  color: var(--muted);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
 .menu-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 22px;
+}
+
+.menu-grid-rail {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(280px, 31%);
+  grid-template-columns: none;
+  gap: 18px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 4px 4px 8px;
+  scroll-snap-type: x proximity;
+  scroll-padding-inline: 4px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(199, 154, 74, 0.42) transparent;
+  -webkit-overflow-scrolling: touch;
+}
+
+.menu-grid-rail::-webkit-scrollbar {
+  height: 10px;
+}
+
+.menu-grid-rail::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.menu-grid-rail::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(199, 154, 74, 0.24), rgba(230, 195, 178, 0.42));
 }
 
 .menu-card {
@@ -1628,6 +1674,8 @@ main,
   transition:
     transform var(--transition),
     box-shadow var(--transition);
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 
 .menu-card-selectable {
@@ -1666,10 +1714,12 @@ main,
 
 .menu-card-image {
   overflow: hidden;
+  contain: paint;
 }
 
 .menu-card img {
-  height: 240px;
+  height: 248px;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
   transition: transform 420ms ease;
 }
@@ -5345,7 +5395,19 @@ html[data-theme="dark"] .home-page .story-section.cosmic-section .story-copy > .
 .gallery-card img {
   width: 100%;
   height: 100%;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
+}
+
+.menu-block,
+.gallery-grid {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 1200px;
+}
+
+.menu-card,
+.gallery-card {
+  contain: layout paint style;
 }
 
 .gallery-caption {

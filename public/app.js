@@ -147,9 +147,17 @@ function renderGalleryItems(items) {
 
   grid.innerHTML = items
     .map(
-      (item) => `
+      (item, index) => `
         <article class="gallery-card${item.wide ? " gallery-card-wide" : ""} reveal">
-          <img src="${item.image.replace(/^\//, "")}" alt="${item.alt}" loading="lazy" decoding="async" fetchpriority="low" />
+          <img
+            src="${item.image.replace(/^\//, "")}"
+            alt="${item.alt}"
+            loading="${index < 2 ? "eager" : "lazy"}"
+            decoding="async"
+            fetchpriority="${index === 0 ? "high" : index < 2 ? "auto" : "low"}"
+            width="1200"
+            height="900"
+          />
           <div class="gallery-caption">
             <span>${item.kicker}</span>
             <strong>${item.title}</strong>
@@ -379,11 +387,20 @@ function getRevealObserver() {
   return revealObserver;
 }
 
-function createMenuCard(item) {
+function createMenuCard(item, index = 0) {
+  const prioritized = index < 3;
   return `
     <article class="menu-card reveal menu-card-selectable" data-cake-name="${item.name}" data-cake-price="${item.price}" tabindex="0">
       <div class="menu-card-image">
-        <img src="${item.image}" alt="${item.name}" loading="lazy" decoding="async" fetchpriority="low" />
+        <img
+          src="${item.image}"
+          alt="${item.name}"
+          loading="${prioritized ? "eager" : "lazy"}"
+          decoding="async"
+          fetchpriority="${index === 0 ? "high" : prioritized ? "auto" : "low"}"
+          width="960"
+          height="720"
+        />
       </div>
       <div class="menu-card-body">
         <h3>${item.name}</h3>
@@ -469,15 +486,15 @@ function renderMenus() {
   const brownie = document.querySelector("#brownie-menu");
 
   if (classic) {
-    classic.innerHTML = menuData.classic.map(createMenuCard).join("");
+    classic.innerHTML = menuData.classic.map((item, index) => createMenuCard(item, index)).join("");
   }
 
   if (special) {
-    special.innerHTML = menuData.special.map(createMenuCard).join("");
+    special.innerHTML = menuData.special.map((item, index) => createMenuCard(item, index)).join("");
   }
 
   if (brownie) {
-    brownie.innerHTML = menuData.brownie.map(createMenuCard).join("");
+    brownie.innerHTML = menuData.brownie.map((item, index) => createMenuCard(item, index)).join("");
   }
 
   menusRendered = true;
@@ -610,7 +627,7 @@ function setupDeferredSectionRendering() {
             didTimeout: false,
             timeRemaining: () => 0
           }),
-        700
+        160
       ));
 
   idleRender(() => {
@@ -647,7 +664,7 @@ function setupDeferredSectionRendering() {
       });
     },
     {
-      rootMargin: "260px 0px"
+      rootMargin: "900px 0px"
     }
   );
 
