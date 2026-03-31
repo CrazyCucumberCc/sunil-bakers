@@ -1641,16 +1641,12 @@ main,
 }
 
 .menu-grid-rail {
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: minmax(280px, 31%);
-  grid-template-columns: none;
+  display: flex;
   gap: 18px;
   overflow-x: auto;
   overflow-y: hidden;
   padding: 4px 4px 3px;
   scroll-snap-type: x proximity;
-  scroll-behavior: smooth;
   scroll-padding-inline: 4px;
   scrollbar-width: thin;
   scrollbar-color: rgba(199, 154, 74, 0.42) transparent;
@@ -1671,12 +1667,13 @@ main,
 }
 
 .menu-card {
+  flex: 0 0 min(31vw, 360px);
+  min-width: 280px;
   overflow: hidden;
   transition:
     transform var(--transition),
     box-shadow var(--transition);
   scroll-snap-align: start;
-  scroll-snap-stop: always;
 }
 
 .menu-card-selectable {
@@ -3067,9 +3064,13 @@ html[data-performance-lite] .concierge-panel {
   }
 
   .menu-grid-rail {
-    grid-auto-columns: minmax(300px, 46%);
     gap: 16px;
     padding-bottom: 4px;
+  }
+
+  .menu-card {
+    flex-basis: 46%;
+    min-width: 300px;
   }
 
   .theme-grid,
@@ -3241,9 +3242,13 @@ html[data-performance-lite] .concierge-panel {
   }
 
   .menu-grid-rail {
-    grid-auto-columns: 82%;
     gap: 14px;
     padding-bottom: 4px;
+  }
+
+  .menu-card {
+    flex-basis: 82%;
+    min-width: 0;
   }
 
   .menu-card-body {
@@ -5466,7 +5471,6 @@ html[data-theme="dark"] .home-page .story-section.cosmic-section .story-copy > .
   object-fit: cover;
 }
 
-.menu-block,
 .gallery-grid {
   content-visibility: auto;
   contain-intrinsic-size: 1px 1200px;
@@ -7079,8 +7083,11 @@ html[data-theme="dark"] .admin-team-role {
   }
 
   .menu-grid-rail {
-    grid-auto-columns: 88%;
     padding-bottom: 2px;
+  }
+
+  .menu-card {
+    flex-basis: 88%;
   }
 
   .menu-card h3 {

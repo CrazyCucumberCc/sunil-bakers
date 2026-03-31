@@ -388,16 +388,15 @@ function getRevealObserver() {
 }
 
 function createMenuCard(item, index = 0) {
-  const prioritized = index < 3;
   return `
-    <article class="menu-card reveal menu-card-selectable" data-cake-name="${item.name}" data-cake-price="${item.price}" tabindex="0">
+    <article class="menu-card menu-card-selectable" data-cake-name="${item.name}" data-cake-price="${item.price}" tabindex="0">
       <div class="menu-card-image">
         <img
           src="${item.image}"
           alt="${item.name}"
-          loading="${prioritized ? "eager" : "lazy"}"
+          loading="lazy"
           decoding="async"
-          fetchpriority="${index === 0 ? "high" : prioritized ? "auto" : "low"}"
+          fetchpriority="low"
           width="960"
           height="720"
         />
@@ -484,18 +483,27 @@ function renderMenus() {
   const classic = document.querySelector("#classic-menu");
   const special = document.querySelector("#special-menu");
   const brownie = document.querySelector("#brownie-menu");
+  const schedule =
+    window.requestAnimationFrame ||
+    ((callback) => {
+      window.setTimeout(callback, 16);
+    });
 
   if (classic) {
     classic.innerHTML = menuData.classic.map((item, index) => createMenuCard(item, index)).join("");
   }
 
-  if (special) {
-    special.innerHTML = menuData.special.map((item, index) => createMenuCard(item, index)).join("");
-  }
+  schedule(() => {
+    if (special) {
+      special.innerHTML = menuData.special.map((item, index) => createMenuCard(item, index)).join("");
+    }
 
-  if (brownie) {
-    brownie.innerHTML = menuData.brownie.map((item, index) => createMenuCard(item, index)).join("");
-  }
+    schedule(() => {
+      if (brownie) {
+        brownie.innerHTML = menuData.brownie.map((item, index) => createMenuCard(item, index)).join("");
+      }
+    });
+  });
 
   menusRendered = true;
   setupRevealAnimation(document.querySelector("#menu"));
